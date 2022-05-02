@@ -66,9 +66,9 @@ with open('truth.txt', 'r', encoding='utf-8') as file:
     details = extract_details(file.read())
 
     with open('systems.csv', 'w') as w_file:
-        title = 'Base, System, System Name'
+        title = 'base,system,system_name'
         print(title, file=w_file)
         lines = '\n'.join(
-            map(lambda detail: f"{detail.get('base')}, {detail.get('system')}, {detail.get('system_name')}", details)
+            map(lambda detail: f"{detail.get('base')},{detail.get('system')},{detail.get('system_name')}", details)
         )
         print(lines, file=w_file)

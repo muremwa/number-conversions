@@ -22,7 +22,7 @@ import os
 
 with open(os.path.join(os.path.dirname(__file__), 'systems.csv'), 'r') as sys_file:
     n_sys = DictReader(sys_file)
-    number_systems = [dict(n_s) for n_s in n_sys]
+    number_systems = tuple(dict(n_s) for n_s in n_sys)
 
 
 __all__ = ['number_systems']

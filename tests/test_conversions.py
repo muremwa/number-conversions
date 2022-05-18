@@ -38,11 +38,12 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(['E8', '32'], self.convert_from_base_10(456, 32))
 
     def test_convert_from_float_base_10(self):
-        self.assertEqual(['0.AB851EB851EB851EB852', '16'], self.convert_from_base_10_float(0.67, 16))
+        self.assertEqual(['0.AB851EB851EB851E', '16'], self.convert_from_base_10_float(0.67, 16))
         self.assertEqual(['0.8', '20'], self.convert_from_base_10_float(0.4, 20))
         self.assertEqual(['0.01', '2'], self.convert_from_base_10_float(0.25, 2))
-        self.assertEqual(['0.44444', '8'], self.convert_from_base_10_float(0.25, 8))
-        self.assertEqual(['0.4', '16'], self.convert_from_base_10_float(0.25, 14))
+        self.assertEqual(['0.444444444444444', '17'], self.convert_from_base_10_float(0.25, 17))
+        self.assertEqual(['0.2', '8'], self.convert_from_base_10_float(0.25, 8))
+        self.assertEqual(['0.4', '16'], self.convert_from_base_10_float(0.25, 16))
         self.assertEqual(['0.5', '20'], self.convert_from_base_10_float(0.25, 20))
 
 

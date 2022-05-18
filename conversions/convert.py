@@ -1,6 +1,8 @@
 from typing import List
+from re import compile as re_compile, search as re_search
 
 from conversions.representations import convert_to_representation
+from n_utils import find_recurring_pattern
 
 
 def convert_from_base_10(decimal: int, new_base: int) -> List[str]:
@@ -22,5 +24,26 @@ def convert_from_base_10(decimal: int, new_base: int) -> List[str]:
 def convert_float_from_base_10(floating_decimal: float, new_base: int) -> List[str]:
     """
     Takes the decimal part and converts it to the new base
+    Maximum possible decimal points. However in case of recurring decimal points, the max is 15
     """
-    pass
+
+    float_match = re_compile(r'\.[0]+$')
+    number = floating_decimal
+    full_numbers = []
+
+    # multiply until the floating part is zero
+    while not re_search(float_match, str(number)):
+        number *= new_base
+        ex_numbers = str(number).split('.')
+        full_numbers.append(ex_numbers[0])
+        number = float(f'0.{ex_numbers[-1]}')
+
+        # stop if you find a recurring number no rounding off, just truncate
+        if len(full_numbers) > 14 and find_recurring_pattern(''.join(full_numbers)):
+            break
+
+    result = convert_to_representation(
+        [int(num) for num in full_numbers]
+    )
+
+    return [f'0.{result}', str(new_base)]

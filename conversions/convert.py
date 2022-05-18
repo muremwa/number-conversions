@@ -57,3 +57,8 @@ def convert_to_base_10(number: str, current_base: int) -> int:
     return sum(
         [(current_base**i) * num for i, num in enumerate(reversed(numbers))]
     )
+
+
+def convert_float_to_base_10(number: str, current_base: int) -> float:
+    """Takes a floating number in any base and returns its decimal/base 10 equivalent"""
+    pass

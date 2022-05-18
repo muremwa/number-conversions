@@ -7,6 +7,7 @@ class ConversionTestCase(unittest.TestCase):
 
     def setUp(self):
         self.convert_from_base_10 = convert.convert_from_base_10
+        self.convert_to_base_10 = convert.convert_to_base_10
         self.convert_from_base_10_float = convert.convert_float_from_base_10
         self.represent = representations.convert_to_representation
         self.un_represent = representations.convert_from_representation
@@ -45,6 +46,20 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(['0.2', 8], self.convert_from_base_10_float(0.25, 8))
         self.assertEqual(['0.4', 16], self.convert_from_base_10_float(0.25, 16))
         self.assertEqual(['0.5', 20], self.convert_from_base_10_float(0.25, 20))
+
+    def test_convert_to_base_10(self):
+        self.assertEqual(200, self.convert_to_base_10('172', 11))
+        self.assertEqual(20, self.convert_to_base_10('10100', 2))
+        self.assertEqual(16, self.convert_to_base_10('10', 16))
+        self.assertEqual(30, self.convert_to_base_10('1E', 16))
+
+    def test_convert_to_base_10_independent(self):
+        self.assertEqual(456, self.convert_to_base_10('1C8', 16))
+        self.assertEqual(456, self.convert_to_base_10('GO', 27))
+        self.assertEqual(456, self.convert_to_base_10('D1', 35))
+        self.assertEqual(456, self.convert_to_base_10('385', 11))
+        self.assertEqual(456, self.convert_to_base_10('DR', 33))
+        self.assertEqual(456, self.convert_to_base_10('E8', 32))
 
 
 if __name__ == '__main__':

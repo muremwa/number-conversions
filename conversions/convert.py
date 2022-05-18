@@ -1,7 +1,7 @@
 from typing import List
 from re import compile as re_compile, search as re_search
 
-from conversions.representations import convert_to_representation
+from conversions.representations import convert_to_representation, convert_from_representation
 from n_utils import find_recurring_pattern
 
 
@@ -47,3 +47,12 @@ def convert_float_from_base_10(floating_decimal: float, new_base: int) -> List[s
     )
 
     return [f'0.{result}', new_base]
+
+
+def convert_to_base_10(number: str, current_base: int) -> int:
+    """Takes a number in any base and returns its decimal/base 10 equivalent"""
+    numbers = convert_from_representation(number)
+
+    return sum(
+        [(current_base**i) * num for i, num in enumerate(reversed(numbers))]
+    )

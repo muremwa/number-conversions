@@ -18,7 +18,7 @@ def convert_from_base_10(decimal: int, new_base: int) -> List[str]:
 
     rems.append(value)
 
-    return [convert_to_representation([rem for rem in reversed(rems)]), str(new_base)]
+    return [convert_to_representation([rem for rem in reversed(rems)]), new_base]
 
 
 def convert_float_from_base_10(floating_decimal: float, new_base: int) -> List[str]:
@@ -46,4 +46,4 @@ def convert_float_from_base_10(floating_decimal: float, new_base: int) -> List[s
         [int(num) for num in full_numbers]
     )
 
-    return [f'0.{result}', str(new_base)]
+    return [f'0.{result}', new_base]

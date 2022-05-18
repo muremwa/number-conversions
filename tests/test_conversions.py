@@ -24,27 +24,27 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual('2I', self.represent([2, 18]))
 
     def test_convert_from_base_10(self):
-        self.assertEqual(self.convert_from_base_10(200, 11), ['172', '11'])
-        self.assertEqual(self.convert_from_base_10(20, 2), ['10100', '2'])
-        self.assertEqual(self.convert_from_base_10(16, 16), ['10', '16'])
-        self.assertEqual(self.convert_from_base_10(30, 16), ['1E', '16'])
+        self.assertEqual(self.convert_from_base_10(200, 11), ['172', 11])
+        self.assertEqual(self.convert_from_base_10(20, 2), ['10100', 2])
+        self.assertEqual(self.convert_from_base_10(16, 16), ['10', 16])
+        self.assertEqual(self.convert_from_base_10(30, 16), ['1E', 16])
 
     def test_convert_from_base_10_independent(self):
-        self.assertEqual(['1C8', '16'], self.convert_from_base_10(456, 16))
-        self.assertEqual(['GO', '27'], self.convert_from_base_10(456, 27))
-        self.assertEqual(['D1', '35'], self.convert_from_base_10(456, 35))
-        self.assertEqual(['385', '11'], self.convert_from_base_10(456, 11))
-        self.assertEqual(['DR', '33'], self.convert_from_base_10(456, 33))
-        self.assertEqual(['E8', '32'], self.convert_from_base_10(456, 32))
+        self.assertEqual(['1C8', 16], self.convert_from_base_10(456, 16))
+        self.assertEqual(['GO', 27], self.convert_from_base_10(456, 27))
+        self.assertEqual(['D1', 35], self.convert_from_base_10(456, 35))
+        self.assertEqual(['385', 11], self.convert_from_base_10(456, 11))
+        self.assertEqual(['DR', 33], self.convert_from_base_10(456, 33))
+        self.assertEqual(['E8', 32], self.convert_from_base_10(456, 32))
 
     def test_convert_from_float_base_10(self):
-        self.assertEqual(['0.AB851EB851EB851E', '16'], self.convert_from_base_10_float(0.67, 16))
-        self.assertEqual(['0.8', '20'], self.convert_from_base_10_float(0.4, 20))
-        self.assertEqual(['0.01', '2'], self.convert_from_base_10_float(0.25, 2))
-        self.assertEqual(['0.444444444444444', '17'], self.convert_from_base_10_float(0.25, 17))
-        self.assertEqual(['0.2', '8'], self.convert_from_base_10_float(0.25, 8))
-        self.assertEqual(['0.4', '16'], self.convert_from_base_10_float(0.25, 16))
-        self.assertEqual(['0.5', '20'], self.convert_from_base_10_float(0.25, 20))
+        self.assertEqual(['0.AB851EB851EB851E', 16], self.convert_from_base_10_float(0.67, 16))
+        self.assertEqual(['0.8', 20], self.convert_from_base_10_float(0.4, 20))
+        self.assertEqual(['0.01', 2], self.convert_from_base_10_float(0.25, 2))
+        self.assertEqual(['0.444444444444444', 17], self.convert_from_base_10_float(0.25, 17))
+        self.assertEqual(['0.2', 8], self.convert_from_base_10_float(0.25, 8))
+        self.assertEqual(['0.4', 16], self.convert_from_base_10_float(0.25, 16))
+        self.assertEqual(['0.5', 20], self.convert_from_base_10_float(0.25, 20))
 
 
 if __name__ == '__main__':

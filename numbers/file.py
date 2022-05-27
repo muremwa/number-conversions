@@ -38,7 +38,7 @@ args = par.parse_args()
 def extract_details(text: str) -> Union[Tuple, None]:
     split_text = text.split('\n')
     assert len(split_text) in (2, 3)
-    detail_numbers = [item.strip() for item in split_text[0].split(',') if item]
+    detail_numbers = [item.strip() for item in split_text[0].split(',') if item.strip()]
 
     try:
         detail_new_base = int(split_text[1])

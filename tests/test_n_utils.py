@@ -73,6 +73,14 @@ class UtilsCase(unittest.TestCase):
         self.assertFalse(n_utils.base_limits('02', 2))
         self.assertFalse(n_utils.base_limits('9', 8))
 
+    def test_base_find(self):
+        self.assertEqual('Undecimal', n_utils.base_find(11))
+        self.assertEqual('Decimal', n_utils.base_find(10))
+        self.assertEqual('Binary', n_utils.base_find(2))
+        self.assertEqual('Trecentosexagesimal', n_utils.base_find(360))
+        self.assertEqual('Enneaoctogesimal', n_utils.base_find(89))
+        self.assertEqual('Trigesimal', n_utils.base_find(30))
+
 
 if __name__ == '__main__':
     unittest.main()

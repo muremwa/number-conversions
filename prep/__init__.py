@@ -26,15 +26,25 @@ from prep import number_codes
 
 """
 from csv import DictReader
+from functools import lru_cache
 import os
 
 
 """
 Retrieve the number systems from file
 """
-with open(os.path.join(os.path.dirname(__file__), 'systems.csv'), 'r') as sys_file:
-    n_sys = DictReader(sys_file)
-    number_systems = tuple(dict(n_s) for n_s in n_sys)
+
+
+@lru_cache(maxsize=1024)
+def __load_number_systems():
+    with open(os.path.join(os.path.dirname(__file__), 'systems.csv'), 'r') as sys_file:
+        n_sys = DictReader(sys_file)
+        number_systems_p = tuple(dict(n_s) for n_s in n_sys)
+
+    return number_systems_p, tuple(int(sys_['base']) for sys_ in number_systems_p)
+
+
+number_systems = __load_number_systems()
 
 
 """

@@ -27,6 +27,7 @@ from prep import number_codes
 """
 from csv import DictReader
 from functools import lru_cache
+from typing import Tuple
 import os
 
 
@@ -36,7 +37,7 @@ Retrieve the number systems from file
 
 
 @lru_cache(maxsize=1024)
-def __load_number_systems():
+def __load_number_systems() -> Tuple[Tuple[dict,...], Tuple[int]]:
     with open(os.path.join(os.path.dirname(__file__), 'systems.csv'), 'r') as sys_file:
         n_sys = DictReader(sys_file)
         number_systems_p = tuple(dict(n_s) for n_s in n_sys)

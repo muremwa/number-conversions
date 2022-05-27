@@ -1,6 +1,6 @@
 import unittest
 
-from conversions import convert, representations
+from conversions import convert, representations, master
 
 
 class ConversionTestCase(unittest.TestCase):
@@ -12,6 +12,7 @@ class ConversionTestCase(unittest.TestCase):
         self.convert_to_base_10_float = convert.convert_float_to_base_10
         self.represent = representations.convert_to_representation
         self.un_represent = representations.convert_from_representation
+        self.master = master.convert_number
 
     def test_conversion_from(self):
         self.assertEqual([1, 14], self.un_represent('1E'))
@@ -70,6 +71,11 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(0.25, self.convert_to_base_10_float('0.2', 8))
         self.assertEqual(0.25, self.convert_to_base_10_float('0.4', 16))
         self.assertEqual(0.25, self.convert_to_base_10_float('0.5', 20))
+
+    def test_master_convert(self):
+        self.assertEqual('11001000.001', self.master('C8.2', 16, 2))
+        self.assertEqual('C8.2', self.master('11001000.001', 2, 16))
+        self.assertEqual('7', self.master('111', 2, 10))
 
 
 if __name__ == '__main__':

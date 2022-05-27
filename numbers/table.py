@@ -1,4 +1,14 @@
-"""Converts a lsit of numbers from one base to another"""
+"""
+    Converts a list of numbers from one base to another
+    the numbers are comma separated
+    to use a file as input leave the first argument as 0 or anything and use the marker -if=input_file
+    to output to a file use -f=output_file or --file=output_file
+
+    File format of the input file is: e.g., numbers.txt
+    1,23,45,6,7,87,86,46,35,24,234,53,6,63,3535
+
+    the numbers are comma separated new lines are assumed to also be separators
+"""
 import argparse
 
 import n_utils
@@ -22,7 +32,7 @@ par.add_argument(
     'numbers',
     type=str,
     action=ListArgAction,
-    help='A list of comma separated numbers in the same base'
+    help='A list of comma separated numbers in the same base. To use input file leave this as 0 or anything and add -if'
 )
 
 par.add_argument(
@@ -46,9 +56,23 @@ par.add_argument(
     help='File to save the result in'
 )
 
+par.add_argument(
+    '--in_file',
+    '-if',
+    type=str,
+    help='File with input, ignores numbers, use 0 instead'
+)
+
 args = par.parse_args()
 
-numbers = args.numbers
+if args.in_file:
+    with open(args.in_file, 'r', encoding='utf-8') as in_file:
+        text = in_file.read()
+        text = text.replace('\n', ',')
+        numbers = [number.strip() for number in text.split(',') if number.strip()]
+else:
+    numbers = args.numbers
+
 current_base = args.current_base
 new_base = args.new_base
 center_len = 4

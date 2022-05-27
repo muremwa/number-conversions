@@ -7,6 +7,8 @@ __whole_from_base_10 = __convert.convert_from_base_10
 
 
 def convert_number(number: str, base_from: int, base_to: int) -> str:
+    """Convert a number from a base to another"""
+
     # divide up the number by decimal place/ index 0 is the whole number while index -1 is the floating part
     numbers = number.split('.')
     no_float = False

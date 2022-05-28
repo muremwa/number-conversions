@@ -4,21 +4,21 @@ This package allows you to convert a number between any of the 82 standard bases
 The chosen 360 characters are available [here](/prep/numbers_map.csv) along with their unicode indexes.
 - - - 
 ## In Command Line
-There are several ways to use from command line with `python -m number.*` command.  
+There are several ways to use from command line with `python -m convert_numbers.*` command.  
 
-### a) numbers.convert
+### a) convert_numbers.convert
 This is the simplest one time conversion command. It takes two positional arguments and one optional.  
     a. __number__: The number to be converted.  
     b. __new_base__: Base to convert the number two.  
     c. __current_base__: The base of the number currently. This is an optional argument. If it's not included the base is assumed to be base 10/Decimal. The marker is `--current_base`  or `-cb`.  
 ```
-python -m numbers.convert number new_base --current_base
-python -m numbers.convert number new_base -cb
+python -m convert_numbers.convert number new_base --current_base
+python -m convert_numbers.convert number new_base -cb
 
-python -m numbers.convert 12 2 -cb 10
+python -m convert_numbers.convert 12 2 -cb 10
 ``` 
 
-### b) numbers.loop
+### b) convert_numbers.loop
 This converts the input and waits for more input to convert until it's quit. The user types in 3 numbers separated by a space.   
 ```
 number_to_convert base_to_convert_to current_base
@@ -26,7 +26,7 @@ number_to_convert base_to_convert_to current_base
 
 If current_base is not provided base 10 is assumed. Runs until user types 'q'. For help type 'h'.  
 ```
-python -m numbers.loop
+python -m convert_numbers.loop
 Enter 'number new_base current_base': number new_base current_base*
 
 Enter 'number new_base current_base': 12 2 10*
@@ -34,7 +34,7 @@ Enter 'number new_base current_base': 12 2 10*
 Enter 'number new_base current_base': q
 ```
 
-### c) numbers.table
+### c) convert_numbers.table
 Takes a list from input and converts it to the new base and returns a nice table as output. Takes 5 arguments, 2 positional and 3 optional.  
     a) __numbers__: A list of numbers to convert separated by comma, no spaces. These numbers must be in the same base.  
     b) __new_base__: Base to convert all the numbers to.  
@@ -43,7 +43,7 @@ Takes a list from input and converts it to the new base and returns a nice table
     e. __in_file__: The file to be treated as input. This is an optional argument. If it is included __numbers__ is ignored. So it can be left as 0 or anything, but never blank :(  The format for in file is comma-separated numbers (new lines are treated as commas). The marker is `--in_file` or `-if`.
 
 ```
-python -m numbers.table 12,13,14 2 -cb=16
+python -m convert_numbers.table 12,13,14 2 -cb=16
 
    
 Base 16 to base 2
@@ -56,14 +56,14 @@ Base 16 to base 2
 ----------------------------
 
 ```
-An example of input file is found [here](/numbers/table_input.txt).  
+An example of input file is found [here](/convert_numbers/table_input.txt).  
 
 
-### d) number.file
-This takes input completely from a file and outputs to another file. In the file, the first line is the list of comma-separated numbers to convert, the second is the new base, while the third is the current base, if any otherwise it's base 10. Example input is [here](/numbers/file_input.txt)  
+### d) convert_numbers.file
+This takes input completely from a file and outputs to another file. In the file, the first line is the list of comma-separated numbers to convert, the second is the new base, while the third is the current base, if any otherwise it's base 10. Example input is [here](/convert_numbers/file_input.txt)  
 
 ```
-python -m numbers.file input_file.txt output_file.txt
+python -m convert_numbers.file input_file.txt output_file.txt
 
 Written to 'out_file.txt'
 

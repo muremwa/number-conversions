@@ -32,7 +32,8 @@ par.add_argument(
     'numbers',
     type=str,
     action=ListArgAction,
-    help='A list of comma separated numbers in the same base. To use input file leave this as 0 or anything and add -if'
+    help='A list of comma separated numbers in the same base. '
+         'To use input file leave this as 0 or anything and add -if'
 )
 
 par.add_argument(

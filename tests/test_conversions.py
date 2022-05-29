@@ -27,6 +27,8 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual('2I', self.represent([2, 18]))
 
     def test_convert_from_base_10(self):
+        self.assertRaises(TypeError, self.convert_from_base_10, '10', 2)
+        self.assertRaises(TypeError, self.convert_from_base_10, 10, '2')
         self.assertEqual(self.convert_from_base_10(200, 11), ['172', 11])
         self.assertEqual(self.convert_from_base_10(20, 2), ['10100', 2])
         self.assertEqual(self.convert_from_base_10(16, 16), ['10', 16])
@@ -41,6 +43,10 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(['E8', 32], self.convert_from_base_10(456, 32))
 
     def test_convert_from_float_base_10(self):
+        self.assertRaises(AssertionError, self.convert_from_base_10_float, 10, 2)
+        self.assertRaises(AssertionError, self.convert_from_base_10_float, -1, 2)
+        self.assertRaises(TypeError, self.convert_from_base_10_float, '0.2', 2)
+        self.assertRaises(TypeError, self.convert_from_base_10_float, 0.2, '2')
         self.assertEqual(['0.AB851EB851EB851E', 16], self.convert_from_base_10_float(0.67, 16))
         self.assertEqual(['0.8', 20], self.convert_from_base_10_float(0.4, 20))
         self.assertEqual(['0.01', 2], self.convert_from_base_10_float(0.25, 2))
@@ -50,6 +56,8 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(['0.5', 20], self.convert_from_base_10_float(0.25, 20))
 
     def test_convert_to_base_10(self):
+        self.assertRaises(TypeError, self.convert_to_base_10, 23, 5)
+        self.assertRaises(TypeError, self.convert_to_base_10, '23', '5')
         self.assertEqual(200, self.convert_to_base_10('172', 11))
         self.assertEqual(20, self.convert_to_base_10('10100', 2))
         self.assertEqual(16, self.convert_to_base_10('10', 16))
@@ -64,6 +72,8 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(456, self.convert_to_base_10('E8', 32))
 
     def test_convert_to_base_10_float(self):
+        self.assertRaises(TypeError, self.convert_to_base_10_float, 0.3, 4)
+        self.assertRaises(TypeError, self.convert_to_base_10_float, '0.3', '4')
         self.assertEqual(0.67, self.convert_to_base_10_float('0.AB851EB851EB851E', 16))
         self.assertEqual(0.4, self.convert_to_base_10_float('0.8', 20))
         self.assertEqual(0.25, self.convert_to_base_10_float('0.01', 2))
@@ -73,6 +83,9 @@ class ConversionTestCase(unittest.TestCase):
         self.assertEqual(0.25, self.convert_to_base_10_float('0.5', 20))
 
     def test_master_convert(self):
+        self.assertRaises(TypeError, self.master, 12, 10, 2)
+        self.assertRaises(TypeError, self.master, '12', '10', 2)
+        self.assertRaises(TypeError, self.master, '12', 10, '2')
         self.assertEqual('11001000.001', self.master('C8.2', 16, 2))
         self.assertEqual('C8.2', self.master('11001000.001', 2, 16))
         self.assertEqual('7', self.master('111', 2, 10))

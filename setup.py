@@ -6,7 +6,7 @@ with open('README.rst', 'r', encoding='utf-8') as f:
 
 setuptools.setup(
     name='number-conversions',
-    version='0.0.3',
+    version='0.0.7',
     author='Muremwa',
     author_email='danmburu254@gmail.com',
     url='https://github.com/muremwa/number-conversions',

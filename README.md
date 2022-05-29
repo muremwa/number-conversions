@@ -1,7 +1,10 @@
 # Number Conversion
 This package allows you to convert a number between any of the 82 standard bases described by [Wikipedia](https://en.wikipedia.org/wiki/List_of_numeral_systems) and [here](/prep/systems.csv). It provides both commandline options and in code options to convert.  
 
-The chosen 360 characters are available [here](/prep/numbers_map.csv) along with their unicode indexes.
+The chosen 360 characters are available [here](/prep/numbers_map.csv) along with their unicode indexes.  
+[Use in command line](#in-command-line)  
+[Use in python code](#in-python-code)  
+
 - - - 
 ## In Command Line
 There are several ways to use from command line with `python -m convert_numbers.*` command.  
@@ -73,7 +76,7 @@ Writes a csv like file, two columns old number, new number. The first two rows a
 
 - - -
 ## In python code
-Several functions are described by the package. They are `convert_number`, `convert_from_base_10`, `convert_float_from_base_10`, `convert_to_base_10` and `convert_float_to_base_10`.    
+Several functions are described by the package. They are `convert_number`, `convert_from_base_10`, `convert_float_from_base_10`, `convert_to_base_10` and `convert_float_to_base_10`. To check user input refer to [this section](#utility-functions)    
 ### Main Functions
 These, only one, can be used in isolation to convert a number from any base to any other base.  
 
@@ -154,3 +157,26 @@ from conversions.convert import convert_float_to_base_10
 result = convert_float_to_base_10('0.2', 16) # returns 0.125
 
 ```
+
+### Utility functions
+Since none of these functions care whether the user input is factually correct, e.g., G4 cannot be base 16 or 63 is not a standard base or whether a character is used to represent these numbers, use `n_utils` to check. It provides the following functions:  
+a. `n_utils.ensure_base_is_standard` - Takes the base, in integer form, and checks whether it's one of the 82 standard ones. Returns `True` or `False`.  
+b. `n_utils.base_limits` - Takes the number, in string form, and the base provided, in integer form and checks whether its factually correct. Returns `True` or `False`.   
+
+To check the name of a base given the base, use `n_utils.base_find` which takes the base as argument and returns a string of the name of the base.  
+
+```python
+from n_utils import base_find, ensure_base_is_standard, base_limits
+
+
+ensure_base_is_standard(63) # False
+ensure_base_is_standard(64) # True
+
+base_limits('G4', 16) # False
+base_limits('G4', 20) # True
+
+base_find(2) # Binary
+base_find(10) # Decimal
+
+```
+

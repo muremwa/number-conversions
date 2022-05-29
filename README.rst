@@ -7,8 +7,10 @@ standard bases described by
 and `here </prep/systems.csv>`__. It provides both commandline options
 and in code options to convert.
 
-The chosen 360 characters are available `here </prep/numbers_map.csv>`__
-along with their unicode indexes.
+| The chosen 360 characters are available
+  `here </prep/numbers_map.csv>`__ along with their unicode indexes.
+| `Use in command line <#in-command-line>`__
+| `Use in python code <#in-python-code>`__
 
 --------------
 
@@ -18,10 +20,10 @@ In Command Line
 There are several ways to use from command line with
 ``python -m convert_numbers.*`` command.
 
-.. _a-numbersconvert:
+.. _a-convert_numbersconvert:
 
 a) convert_numbers.convert
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | This is the simplest one time conversion command. It takes two
   positional arguments and one optional.
@@ -38,10 +40,10 @@ a) convert_numbers.convert
 
    python -m convert_numbers.convert 12 2 -cb 10
 
-.. _b-numbersloop:
+.. _b-convert_numbersloop:
 
 b) convert_numbers.loop
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 This converts the input and waits for more input to convert until it's
 quit. The user types in 3 numbers separated by a space.
@@ -62,10 +64,10 @@ types 'q'. For help type 'h'.
    '12' in Decimal (base 10) to Binary (base 2) = '1100'
    Enter 'number new_base current_base': q
 
-.. _c-numberstable:
+.. _c-convert_numberstable:
 
 c) convert_numbers.table
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 | Takes a list from input and converts it to the new base and returns a
   nice table as output. Takes 5 arguments, 2 positional and 3 optional.
@@ -98,18 +100,19 @@ c) convert_numbers.table
    |       14      |  10100   |
    ----------------------------
 
-An example of input file is found `here </numbers/table_input.txt>`__.
+An example of input file is found
+`here </convert_numbers/table_input.txt>`__.
 
-.. _d-numberfile:
+.. _d-convert_numbersfile:
 
 d) convert_numbers.file
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 This takes input completely from a file and outputs to another file. In
 the file, the first line is the list of comma-separated numbers to
 convert, the second is the new base, while the third is the current
 base, if any otherwise it's base 10. Example input is
-`here </numbers/file_input.txt>`__
+`here </convert_numbers/file_input.txt>`__
 
 ::
 
@@ -128,7 +131,8 @@ In python code
 Several functions are described by the package. They are
 ``convert_number``, ``convert_from_base_10``,
 ``convert_float_from_base_10``, ``convert_to_base_10`` and
-``convert_float_to_base_10``.
+``convert_float_to_base_10``. To check user input refer to `this
+section <#utility-functions>`__
 
 Main Functions
 ~~~~~~~~~~~~~~
@@ -251,3 +255,35 @@ Usage
    from conversions.convert import convert_float_to_base_10
 
    result = convert_float_to_base_10('0.2', 16) # returns 0.125
+
+Utility functions
+~~~~~~~~~~~~~~~~~
+
+| Since none of these functions care whether the user input is factually
+  correct, e.g., G4 cannot be base 16 or 63 is not a standard base or
+  whether a character is used to represent these numbers, use
+  ``n_utils`` to check. It provides the following functions:
+| a. ``n_utils.ensure_base_is_standard`` - Takes the base, in integer
+  form, and checks whether it's one of the 82 standard ones. Returns
+  ``True`` or ``False``.
+| b. ``n_utils.base_limits`` - Takes the number, in string form, and the
+  base provided, in integer form and checks whether its factually
+  correct. Returns ``True`` or ``False``.
+
+To check the name of a base given the base, use ``n_utils.base_find``
+which takes the base as argument and returns a string of the name of the
+base.
+
+.. code:: python
+
+   from n_utils import base_find, ensure_base_is_standard, base_limits
+
+
+   ensure_base_is_standard(63) # False
+   ensure_base_is_standard(64) # True
+
+   base_limits('G4', 16) # False
+   base_limits('G4', 20) # True
+
+   base_find(2) # Binary
+   base_find(10) # Decimal

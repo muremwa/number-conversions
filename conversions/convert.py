@@ -26,7 +26,7 @@ def convert_float_from_base_10(floating_decimal: float, new_base: int) -> List[s
     Takes the decimal part and converts it to the new base
     Maximum possible decimal points. However in case of recurring decimal points, the max is 15
     """
-    assert 1 > floating_decimal > 0
+    assert 1 > floating_decimal >= 0
 
     float_match = re_compile(r'\.[0]+$')
     number = floating_decimal
